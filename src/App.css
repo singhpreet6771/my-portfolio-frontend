@@ -206,10 +206,13 @@ h3 {
 }
 
 .workButton {
+  width: fit-content;
   background: #000;
+  cursor: default;
 }
 
 .workButton:hover {
+  width: fit-content;
   background: #292b2d;
 }
 

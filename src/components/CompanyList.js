@@ -8,6 +8,57 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { ReactComponent as SchoolIcon } from "../assets/experience.svg";
 
+const experienceListLocal = [
+  {
+    companyName: "SkyLine Meridian",
+    title: "Flutter App Developer Intern",
+    from: "Jun 2021",
+    to: "Jul 2021",
+    technologies: ["Flutter", "Android Studio", "Git"],
+    icon: "work",
+    location: "Remote",
+    description:
+      "Led the development of a live quiz application from scratch, managing both frontend and backend tasks.",
+    date: Date.now(),
+  },
+  {
+    companyName: "Sabre India",
+    title: "Associate Intern",
+    from: "Jan 2023",
+    to: "Jul 2023",
+    technologies: ["NodeJS", "Typescript", "ExpressJS"],
+    icon: "work",
+    location: "Bengaluru, Karnataka, India",
+    description:
+      "Redesigned and implemented a new Node.js backend for an existing frontend, replacing the legacy .NET backend.",
+    date: Date.now(),
+  },
+  {
+    companyName: "Sabre India",
+    title: "SDE I",
+    from: "Jul 2023",
+    to: "Jun 2025",
+    technologies: ["ReactJS", "KnockoutJS", "NodeJS", "Graphql", "Javascript"],
+    icon: "work",
+    location: "Bengaluru, Karnataka, India",
+    description:
+      "Actively developing software with a variety of JavaScript frameworks, balancing legacy Knockout.js with cutting-edge Node.js, React, and Express.js technologies.",
+    date: Date.now(),
+  },
+  {
+    companyName: "Sabre India",
+    title: "SDE III",
+    from: "Jul 2025",
+    to: "Present",
+    technologies: ["ReactJS", "KnockoutJS", "NodeJS", "Graphql", "Javascript"],
+    icon: "work",
+    location: "Remote",
+    description:
+      "Leading full-stack development, architecture, and code quality initiatives while mentoring engineers and driving cross-team collaboration for scalable, high-impact product features.",
+    date: Date.now(),
+  },
+];
+
 const CompanyList = () => {
   const parseExperiences = (experiences) => {
     return experiences.map((exp) => {
@@ -22,19 +73,21 @@ const CompanyList = () => {
   const [experienceList, setExperienceList] = useState([]);
 
   useEffect(() => {
-    axios({
-      url: `${process.env.REACT_APP_DOWNLINE_URL}${process.env.REACT_APP_GET_EXPERIENCE}`,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        setExperienceList(parseExperiences(res.data.experiences));
-      })
-      .catch((err) => {
-        console.log("Got Error from Fetch Experience API: ", err);
-      });
+    // axios({
+    //   url: `${process.env.REACT_APP_DOWNLINE_URL}${process.env.REACT_APP_GET_EXPERIENCE}`,
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((res) => {
+    //     //TODO: HardCode here.
+    //     setExperienceList(parseExperiences(res.data.experiences));
+    //   })
+    //   .catch((err) => {
+    //     console.log("Got Error from Fetch Experience API: ", err);
+    //   });
+    setExperienceList(parseExperiences(experienceListLocal));
   }, []);
 
   let workIconStyles = { background: "#f5e3a0" };
@@ -79,14 +132,14 @@ const CompanyList = () => {
               </div>
               <p id="description">{element.description}</p>
               {showButton && (
-                <a
+                <div
                   className={`button ${
                     isWorkIcon ? "workButton" : "schoolButton"
                   }`}
                   href="/"
                 >
                   {element.companyName}
-                </a>
+                </div>
               )}
             </VerticalTimelineElement>
           );
